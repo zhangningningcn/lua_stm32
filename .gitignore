@@ -31,3 +31,12 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Other files
+*.map
+*.d
+/mdk/DebugConfig/
+/mdk/Listings/
+/mdk/Objects/
+/mdk/lua_stm32.uvguix.*
+/mdk/lua_stm32.uvoptx
