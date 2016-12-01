@@ -23,7 +23,7 @@ LINKFLAGS := -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -g -Wl,-
 
 STM32_INCLUDES := -I $(TOP_DIR)/Lib/STM32F4xx/inc \
 -I $(TOP_DIR)/Lib/CMSIS/CM4 -I $(TOP_DIR)/Lib/spiffs \
--I $(TOP_DIR)/app -I $(TOP_DIR)/spiffs -I $(TOP_DIR)/Lua \
+-I $(TOP_DIR)/app -I $(TOP_DIR)/spiffs -I $(TOP_DIR)/lua \
 -I $(TOP_DIR)/modules/cm4
 
 sinclude ../Lib/STM32F4xx/src/Makefile.mk

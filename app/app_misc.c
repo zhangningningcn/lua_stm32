@@ -7,6 +7,7 @@
 #endif
 #include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 static uint32_t DelayMsCounter = 0;
 static uint32_t SysTickCounter = 0;
@@ -99,7 +100,8 @@ char *itoa(int value, char *str, int base);
 void _exit(int code) {
 	char strcode[10];
 	USART_Lua_SendS("Application Exit",'\0');
-	itoa(code,strcode,10);
+	//itoa(code,strcode,10);
+	sprintf(strcode,"%d",code);
 	USART_Lua_SendS(strcode,'\n');
 	while(1);
 }
@@ -132,7 +134,8 @@ int _getpid(void) {
 int _write(int file, char *ptr, int len) {
 	char strcode[10];
 	USART_Lua_SendS("f:",'\0');
-	itoa(file,strcode,10);
+	//itoa(file,strcode,10);
+	sprintf(strcode,"#d",file);
 	USART_Lua_SendS(strcode,'\n');
 	USART_Lua_Send(ptr,len);
 	return len;

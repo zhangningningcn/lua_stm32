@@ -18,12 +18,12 @@ CP = cp
 #include cm3.mk
 include cm4.mk
 
-sinclude ../lua/Makefile.mk
+include ../lua/Makefile.mk
 sinclude ../spiffs/Makefile.mk
-sinclude ../app/Makefile.mk
-sinclude ../Lib/VCP/SRC/Makefile.mk
-sinclude ../Lib/VCP/USBDevLib/Makefile.mk
-sinclude ../Lib/VCP/USBOTGD/Makefile.mk
+include ../app/Makefile.mk
+include ../Lib/VCP/src/Makefile.mk
+include ../Lib/VCP/USBDevLib/Makefile.mk
+include ../Lib/VCP/USBOTGD/Makefile.mk
 
 OBJLIST = $(addprefix obj/,$(OBJ))
 

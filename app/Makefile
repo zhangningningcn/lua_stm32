@@ -6,7 +6,7 @@ all:$(APP_OBJ)
 $(APP_OBJ):%.o:%.c
 	@echo Compiling C: $<
 	$(CC) -c $(CCFLAGS) $(OPTIMIZATION) $(INCLUDES) -D$(DEVICETYPE) $< -o $(OBJDIR)$@ 
-	$(CC) -MM $(INCLUDES) -D$(DEVICETYPE) $< -MF $(DEPDIR)$(*F).d
+	$(CC) -MM $(CCFLAGS) $(INCLUDES) -D$(DEVICETYPE) $< -MF $(DEPDIR)$(*F).d
 	
 sinclude $(addprefix $(DEPDIR),$(APP_OBJ:.o=.d))  
 

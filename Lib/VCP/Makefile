@@ -1,5 +1,5 @@
 
-INCLUDES := -I $(TOP_DIR)/lib/VCP/inc $(STM32_INCLUDES)
+INCLUDES := -I $(TOP_DIR)/Lib/VCP/inc $(STM32_INCLUDES)
 all:
 	$(MAKE) -C src
 	$(MAKE) -C USBDevLib

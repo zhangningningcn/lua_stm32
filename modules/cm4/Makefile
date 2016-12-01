@@ -10,7 +10,7 @@ all:$(MODULES_OBJ)
 $(MODULES_OBJ):%.o:%.c
 	@echo Compiling C: $<
 	$(CC) -c $(CCFLAGS)  $(OPTIMIZATION) $(INCLUDES) $(STM32_INCLUDES) -D$(DEVICETYPE)  $< -o $(OBJDIR)$@ 
-	$(CC) -MM $(STM32_INCLUDES) $< -MF $(DEPDIR)$(*F).d
+	$(CC) -MM $(CCFLAGS) $(STM32_INCLUDES) $< -MF $(DEPDIR)$(*F).d
 
 sinclude $(addprefix $(DEPDIR),$(MODULES_OBJ:.o=.d))  
 
