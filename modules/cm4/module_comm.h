@@ -1,6 +1,7 @@
 #ifndef _MODULE_COMM_H_
 #define _MODULE_COMM_H_
 #include <stdint.h>
+#include "stm32f4xx.h"
 
 void InitPinGroupTable(void);
 int PinGroupIsEnable(int group);
@@ -9,6 +10,8 @@ int PinIsUsed(int group,uint32_t pin);
 
 extern uint32_t LIB_GPIO_USED_TABLE[9];
 extern uint32_t LIB_ADC_USED_TABLE[9];
+extern GPIO_TypeDef * LIB_GPIO_DEF[9];
+
 #define GPIO_PIN  1
 #define ADC_PIN   2
 #define SYS_PIN   3

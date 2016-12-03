@@ -10,7 +10,7 @@
 #define MODULE_IO_OUTPUT       3
 
 
-static GPIO_TypeDef * LIB_GPIO_DEF[] = {GPIOA,GPIOB,GPIOC,GPIOD,GPIOE,GPIOF,GPIOG,GPIOH,GPIOI};
+GPIO_TypeDef * LIB_GPIO_DEF[9] = {GPIOA,GPIOB,GPIOC,GPIOD,GPIOE,GPIOF,GPIOG,GPIOH,GPIOI};
 static int GPIO_Interrupt_Ref[16];
 static int GPIO_Interrupts[16];
 
@@ -114,6 +114,7 @@ static int lgpio_setTrig( lua_State* L ) {
     else if(GPIO_Interrupts[pinnum] != pingroup) {
         return luaL_error( L, "EXTI line %d is unsed by GPIO%c",pinnum,pingroup+'A');
     }
+    pinnum = (uint32_t)1 << pinnum;
     if(PinIsUsed(pingroup,pinnum) == 0) {
         if(!PinGroupIsEnable(pingroup)) {
             uint32_t group = ((uint32_t)1 << pingroup);
