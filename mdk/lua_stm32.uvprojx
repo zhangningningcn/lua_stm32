@@ -794,6 +794,11 @@
               <FileType>1</FileType>
               <FilePath>..\modules\cm4\xmodem.c</FilePath>
             </File>
+            <File>
+              <FileName>module_sht1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modules\cm4\module_sht1.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

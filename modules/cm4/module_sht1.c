@@ -27,7 +27,7 @@ uint32_t Num_sck = 0,Num_Data = 0;
 //static uint16_t Humidity;
 
 // Lua: sht.init(PORT_SCK,NUM_SCK,POTR_DATA,NUM_DATA) 
-// Lua: sht.init(PA,1,PA,2) 
+// Lua: sht.init(gpio.PA,1,gpio.PA,2) 
 static int lsht_init( lua_State* L ) {
     uint32_t pg_sck   = luaL_checkinteger( L, 1 );
     uint32_t num_sck  = luaL_checkinteger( L, 2 );
@@ -57,7 +57,7 @@ static int lsht_init( lua_State* L ) {
     GPIO_InitStructure.GPIO_Pin = num_sck;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
     GPIO_Init(Port_Sck, &GPIO_InitStructure);
     
@@ -68,6 +68,7 @@ static int lsht_init( lua_State* L ) {
     PinUse(GPIO_PIN,pg_data,num_data,PIN_STATE_USE);
     GPIO_InitStructure.GPIO_Pin = num_data;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
     GPIO_Init(Port_Data, &GPIO_InitStructure);
 	
     return 0;
@@ -184,3 +185,15 @@ uint8_t Sht_Hum( lua_State* L )
     lua_pushnumber( L, humidity );
 	return 1;
 }
+
+// Module function map
+static const luaL_Reg sht_map[] = {
+  {"init"      , lsht_init       },
+  {"temp"      , Sht_Temp        },
+  {"hum"       , Sht_Hum         },
+};
+
+LUAMOD_API int luaopen_sht (lua_State *L) {
+    luaL_newlib(L, sht_map);
+}
+

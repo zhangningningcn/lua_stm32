@@ -175,6 +175,7 @@ static int lgpio_unsetTrig( lua_State* L ) {
 }
 // Lua: mode(PA,1,OUT,PULL)
 static int lgpio_mode( lua_State* L ) {
+    uint32_t gpiomode = GPIO_Mode_IN;
     unsigned pingroup = luaL_checkinteger( L, 1 );
     uint32_t pinnum   = luaL_checkinteger( L, 2 );
     uint32_t pinmode  = luaL_checkinteger( L, 3 );
@@ -189,10 +190,10 @@ static int lgpio_mode( lua_State* L ) {
     switch(pinmode) {
         case MODULE_IO_DISABLE:
         case MODULE_IO_INPUT:
-        pinmode = GPIO_Mode_IN;
+        gpiomode = GPIO_Mode_IN;
         break;
         case MODULE_IO_OUTPUT:
-        pinmode = GPIO_Mode_OUT;
+        gpiomode = GPIO_Mode_OUT;
         break;
         default:
         return luaL_error( L, "pin mode mast be OUTPUT,PULLUP or DISABLE." );
@@ -200,13 +201,13 @@ static int lgpio_mode( lua_State* L ) {
     }
     switch(pullup) {
         case GPIO_PuPd_NOPULL:
-        pinmode = GPIO_Mode_IN;
-        break;
+        //pullup = GPIO_Mode_IN;
+        //break;
         case GPIO_PuPd_UP:
-        pinmode = GPIO_Mode_OUT;
-        break;
+        //pullup = GPIO_Mode_OUT;
+        //break;
         case GPIO_PuPd_DOWN:
-        pinmode = GPIO_Mode_OUT;
+        //pullup = GPIO_Mode_OUT;
         break;
         default:
         return luaL_error( L, "pull mast be NOPULL,PULLUP or PULLDOWN." );
@@ -227,7 +228,7 @@ static int lgpio_mode( lua_State* L ) {
     
     GPIO_InitTypeDef  GPIO_InitStructure;
     GPIO_InitStructure.GPIO_Pin = pinnum;
-    GPIO_InitStructure.GPIO_Mode = pinmode;
+    GPIO_InitStructure.GPIO_Mode = gpiomode;
     GPIO_InitStructure.GPIO_PuPd = pullup;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;

@@ -72,7 +72,9 @@ static const luaL_Reg loadedlibs[] = {
 #if defined(LUA_KEYLIBNAME)
   {LUA_KEYLIBNAME, luaopen_key},
 #endif
-
+#if defined(LUA_SHTLIBNAME)
+  {LUA_SHTLIBNAME, luaopen_sht},
+#endif
   {NULL, NULL}
 };
 

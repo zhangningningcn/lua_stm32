@@ -11,5 +11,7 @@ LUAMOD_API int (luaopen_flash) (lua_State *L);
 LUAMOD_API int (luaopen_led) (lua_State *L);
 #define LUA_KEYLIBNAME	"key"
 LUAMOD_API int (luaopen_key) (lua_State *L);
+// #define LUA_SHTLIBNAME	"sht"
+LUAMOD_API int luaopen_sht (lua_State *L);
 
 #endif
